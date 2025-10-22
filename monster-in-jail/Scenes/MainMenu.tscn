@@ -1,0 +1,116 @@
+[gd_scene load_steps=8 format=3 uid="uid://bq1pyy6voftqq"]
+
+[ext_resource type="Script" uid="uid://dba8pdpkutokp" path="res://Scenes/main_menu.gd" id="1_tt5f1"]
+[ext_resource type="AudioStream" uid="uid://bdw86d4oqxipr" path="res://Music/horror sound demo 3.wav" id="2_853f1"]
+[ext_resource type="Material" uid="uid://c7g2y3gt3mfe3" path="res://Materials/Glass.tres" id="2_ghw46"]
+[ext_resource type="AudioStream" uid="uid://c72rmn5yil0hk" path="res://Sound/Bloop.mp3" id="3_8saeu"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tt5f1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_853f1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tt5f1"]
+font_size = 70
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_tt5f1")
+
+[node name="Test" type="Test" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24129727, 0.30049652, 0.9847956)
+
+[node name="Hallway" type="Node" parent="."]
+
+[node name="HallwayFloor" type="MeshInstance3D" parent="Hallway"]
+transform = Transform3D(1.1271507, 0, 0, 0, 1, 0, 0, 0, 1, -0.035437882, 0, 0.73202825)
+mesh = SubResource("PlaneMesh_tt5f1")
+skeleton = NodePath("../..")
+
+[node name="HallwayWallLeft" type="MeshInstance3D" parent="Hallway"]
+transform = Transform3D(0.0498569, 0, 0, 0, 1.8765422, 0, 0, 0, 1.0153273, -0.9749345, 0, 0.73202825)
+mesh = SubResource("BoxMesh_853f1")
+
+[node name="HallwayWallRight" type="MeshInstance3D" parent="Hallway"]
+transform = Transform3D(0.002485711, 0, 0, 0, 1.3918124, 0, 0, 0, 1.0308897, 0.5829795, 0.1329543, 0.73202825)
+mesh = SubResource("BoxMesh_853f1")
+skeleton = NodePath("../HallwayWallLeft")
+
+[node name="HallwayWallFront_Bottom" type="MeshInstance3D" parent="Hallway"]
+transform = Transform3D(-1.08653864e-10, 0, 2.1576743, 0, 0.32214832, 0, -0.0024857107, 0, -9.431494e-08, 0.02968219, 0, 0.31985086)
+mesh = SubResource("BoxMesh_853f1")
+skeleton = NodePath("../HallwayWallLeft")
+
+[node name="HallwayWallFront_Bottom2" type="MeshInstance3D" parent="Hallway"]
+transform = Transform3D(-1.08653864e-10, 0, 2.0743527, 0, 0.3095886, 0, -0.0024857107, 0, -9.067284e-08, 0.02968219, 0.67381823, 0.31985086)
+mesh = SubResource("BoxMesh_853f1")
+skeleton = NodePath("../HallwayWallLeft")
+
+[node name="HallwayWallFront_Bottom3" type="MeshInstance3D" parent="Hallway"]
+transform = Transform3D(-1.08653864e-10, 0, 0.6057808, 0, 0.43206203, 0, -0.0024857107, 0, -2.6479519e-08, -0.7534988, 0.31404865, 0.31985086)
+mesh = SubResource("BoxMesh_853f1")
+skeleton = NodePath("../HallwayWallLeft")
+
+[node name="HallwayWallFront_Bottom4" type="MeshInstance3D" parent="Hallway"]
+transform = Transform3D(-1.0865387e-10, 0, 0.20898205, 0, 0.43206203, 0, -0.002485711, 0, -9.1348955e-09, 0.49725425, 0.31404865, 0.31985086)
+mesh = SubResource("BoxMesh_853f1")
+skeleton = NodePath("../HallwayWallLeft")
+
+[node name="HallwayGlass" type="MeshInstance3D" parent="Hallway"]
+transform = Transform3D(-1.08653864e-10, 0, 1.0724992, 0, 0.45168528, 0, -0.0024857107, 0, -4.6880427e-08, 0.0065231025, 0.32752582, 0.29670423)
+material_override = ExtResource("2_ghw46")
+mesh = SubResource("BoxMesh_853f1")
+skeleton = NodePath("../HallwayWallLeft")
+
+[node name="WindowLight1" type="SpotLight3D" parent="Hallway"]
+transform = Transform3D(1, 0, 0, 0, -0.50439197, -0.86347485, 0, 0.86347485, -0.50439197, -0.23428285, 0, 0.45931792)
+
+[node name="WindowLight2" type="SpotLight3D" parent="Hallway"]
+transform = Transform3D(1, 0, 0, 0, -0.50439197, -0.86347485, 0, 0.86347485, -0.50439197, 0.3289286, 0, 0.45931792)
+
+[node name="WindowLight3" type="SpotLight3D" parent="Hallway"]
+transform = Transform3D(1, 0, 0, 0, 0.99850255, 0.05470623, 0, -0.05470623, 0.99850255, -0.23428285, 0.44310164, 2.5737815)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayButton" type="Button" parent="CanvasLayer"]
+offset_left = 28.0
+offset_top = 385.0
+offset_right = 273.0
+offset_bottom = 472.0
+tooltip_text = "
+"
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer"]
+offset_left = 51.0
+offset_top = 489.0
+offset_right = 256.0
+offset_bottom = 569.0
+tooltip_text = "
+"
+text = "Quit"
+
+[node name="MainMenuController" type="MainMenuController" parent="CanvasLayer"]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 21.0
+offset_top = 17.0
+offset_right = 551.0
+offset_bottom = 205.0
+text = "Back to work!"
+label_settings = SubResource("LabelSettings_tt5f1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_853f1")
+volume_db = 0.954
+autoplay = true
+
+[node name="ButtonController" type="ButtonController" parent="."]
+onHoverSound = ExtResource("3_8saeu")
+
+[connection signal="mouse_entered" from="CanvasLayer/PlayButton" to="ButtonController" method="on_button_hover"]
+[connection signal="pressed" from="CanvasLayer/PlayButton" to="CanvasLayer/MainMenuController" method="on_button_pressed" binds= ["Play"]]
+[connection signal="pressed" from="CanvasLayer/QuitButton" to="CanvasLayer/MainMenuController" method="on_button_pressed" binds= ["Quit"]]
