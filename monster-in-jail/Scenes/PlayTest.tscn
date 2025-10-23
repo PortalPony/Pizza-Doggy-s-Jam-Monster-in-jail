@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8mogd487g35h"]
+[gd_scene load_steps=7 format=3 uid="uid://b8mogd487g35h"]
 
 [ext_resource type="PackedScene" uid="uid://cut5aalidh27l" path="res://Assets/monsterBed.glb" id="1_cpqn7"]
 [ext_resource type="PackedScene" uid="uid://cxvmlwi5qcivt" path="res://Assets/leftShackle.glb" id="1_yxwcr"]
@@ -6,10 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bp6e5gv2qf0iy" path="res://Assets/rightShackle.glb" id="3_xys5q"]
 [ext_resource type="PackedScene" uid="uid://bbtadl1fkoah8" path="res://Assets/room.glb" id="4_xys5q"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xys5q"]
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7038336, 1.6638694, 1.7910943)
+[node name="Node3D" type="Node3D"]
 
 [node name="Table" type="Node3D" parent="."]
 
@@ -44,7 +43,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4356163, 0.27414668, -6.895
 transform = Transform3D(0.0027227327, 0, -1.4999975, 0, 1.5, 0, 1.4999975, 0, 0.0027227327, 1.7086986, 0, -6.9478793)
 
 [node name="room" parent="." instance=ExtResource("4_xys5q")]
+physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9224048, 0, 1.6615245)
 
-[node name="suitAndHelmet" parent="." instance=ExtResource("2_yxwcr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.66646624, 0, -3.3294191)
+[node name="CharacterController" type="CharacterController" parent="."]
+movementSpeed = 10.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9870634, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterController"]
+shape = SubResource("CapsuleShape3D_xys5q")
+
+[node name="suitAndHelmet" parent="CharacterController" instance=ExtResource("2_yxwcr")]
+transform = Transform3D(-1.0000001, 0, 0.00012212992, 0, 1, 0, -0.00012212992, 0, -1.0000001, 0.0072672367, -0.9870634, -0.123818874)
+
+[node name="Camera3D" type="Camera3D" parent="CharacterController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.080044, 0.6027682, 1.1772306)
