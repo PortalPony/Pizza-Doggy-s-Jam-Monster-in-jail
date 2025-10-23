@@ -1,61 +1,50 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8mogd487g35h"]
+[gd_scene load_steps=6 format=3 uid="uid://b8mogd487g35h"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_340as"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_sd7ov"]
+[ext_resource type="PackedScene" uid="uid://cut5aalidh27l" path="res://Assets/monsterBed.glb" id="1_cpqn7"]
+[ext_resource type="PackedScene" uid="uid://cxvmlwi5qcivt" path="res://Assets/leftShackle.glb" id="1_yxwcr"]
+[ext_resource type="PackedScene" uid="uid://8b78oouk84tx" path="res://Assets/suitAndHelmet.glb" id="2_yxwcr"]
+[ext_resource type="PackedScene" uid="uid://bp6e5gv2qf0iy" path="res://Assets/rightShackle.glb" id="3_xys5q"]
+[ext_resource type="PackedScene" uid="uid://bbtadl1fkoah8" path="res://Assets/room.glb" id="4_xys5q"]
 
 [node name="Node3D" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26284373, 2.6931195)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.4516639, -0.0014016472, 0.006914132, 0.0020406588, 0.99999785, -0.003852939, -0.003928501, 0.001513015, 2.5529196, 0, 0, 0.2966519)
-mesh = SubResource("PlaneMesh_340as")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.093815565, 0, 0, 0, 2.1967297, 0, 0, 0, 4.953689, 1.3310039, 0, 0.25884867)
-mesh = SubResource("BoxMesh_sd7ov")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.093815565, 0, 0, 0, 2.1967297, 0, 0, 0, 5.4632688, -1.3988914, 0, 0.25884867)
-mesh = SubResource("BoxMesh_sd7ov")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.0043327934, 0, -3.150394, 0, 2.1967294, 0, 0.09184256, 0, -0.14862396, 0.035893798, 0, -2.2807157)
-mesh = SubResource("BoxMesh_sd7ov")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7038336, 1.6638694, 1.7910943)
 
 [node name="Table" type="Node3D" parent="."]
 
-[node name="TableMesh" type="MeshInstance3D" parent="Table"]
-transform = Transform3D(1, 0, 0, 0, 0.35621738, 0, 0, 0, 2.8589683, 0, 0, 0.25884867)
-mesh = SubResource("BoxMesh_sd7ov")
-skeleton = NodePath("../..")
+[node name="MonsterController" type="MonsterController" parent="."]
+monster_shackle_paths = [NodePath("../TopLeftArmShackle"), NodePath("../TopRightArmShackle"), NodePath("../BottomLeftLegShackle"), NodePath("../BottomRightLegShackle")]
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Table/TableMesh"]
-transform = Transform3D(-0.0046600373, 0.99998915, -2.808235e-12, 0.031454526, 0.00014658086, -2.8070986, -0.3497508, -0.0016298695, -0.0039191656, -0.55472153, 0, -0.09053919)
-light_energy = 4.629
+[node name="TopLeftArmShackle" type="MonsterShackle" parent="."]
+maxTimeToBreak = 10.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.97176564, 0.71437967, -7.2933645)
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="Table/TableMesh"]
-transform = Transform3D(-0.19062102, 0.89053166, 1.25851, 0.3646569, 0.45490137, -2.4754095, -0.34599552, -0.0016123694, -0.051265515, 0.6202028, 0, -0.09053919)
-light_energy = 4.629
+[node name="shackle" parent="TopLeftArmShackle" instance=ExtResource("1_yxwcr")]
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="Table/TableMesh"]
-transform = Transform3D(-0.0046600373, 0.99998915, 3.0635264e-12, 0.03145453, 0.00014658087, -2.8070986, -0.3497508, -0.0016298695, -0.003919166, -0.55472153, 0, 0.1684955)
-light_energy = 4.629
+[node name="TopRightArmShackle" type="MonsterShackle" parent="."]
+maxTimeToBreak = 4.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3639808, 0.7088774, -8.405487)
 
-[node name="SpotLight3D4" type="SpotLight3D" parent="Table/TableMesh"]
-transform = Transform3D(-0.18766902, 0.96635973, 0.17586692, 0.3590098, 0.56584466, -2.7261188, -0.34063736, -0.055877782, -0.056457665, 0.6202028, 0, 0.1684955)
-light_energy = 4.629
+[node name="shackle" parent="TopRightArmShackle" instance=ExtResource("3_xys5q")]
 
-[node name="SpotLight3D5" type="SpotLight3D" parent="Table/TableMesh"]
-transform = Transform3D(-0.0046600373, 0.99998915, -1.97853e-12, 0.031454533, 0.00014658089, -2.8070986, -0.3497508, -0.0016298695, -0.0039191665, -0.55472153, 0, 0.40739113)
-light_energy = 4.629
+[node name="BottomLeftLegShackle" type="MonsterShackle" parent="."]
+maxTimeToBreak = 4.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9593203, 0.40856087, -5.646855)
 
-[node name="SpotLight3D6" type="SpotLight3D" parent="Table/TableMesh"]
-transform = Transform3D(-0.18766904, 0.96635973, 0.17586707, 0.3590099, 0.5658447, -2.7261188, -0.3406374, -0.055877794, -0.056457687, 0.6202028, 0, 0.40739113)
-light_energy = 4.629
+[node name="shackle" parent="BottomLeftLegShackle" instance=ExtResource("1_yxwcr")]
 
-[node name="SpotLight3D7" type="SpotLight3D" parent="Table/TableMesh"]
-transform = Transform3D(2.6891177, 0.06733032, 0.48635516, -0.7678693, -0.013333303, 0.90474415, 0.00839798, -0.34967014, 0.001974367, -0.056324303, 5.649433, 0.019388512)
-light_energy = 4.629
+[node name="BottomRightLegShackle" type="MonsterShackle" parent="."]
+maxTimeToBreak = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4356163, 0.27414668, -6.8955836)
+
+[node name="shackle" parent="BottomRightLegShackle" instance=ExtResource("3_xys5q")]
+
+[node name="monsterBed" parent="." instance=ExtResource("1_cpqn7")]
+transform = Transform3D(0.0027227327, 0, -1.4999975, 0, 1.5, 0, 1.4999975, 0, 0.0027227327, 1.7086986, 0, -6.9478793)
+
+[node name="room" parent="." instance=ExtResource("4_xys5q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9224048, 0, 1.6615245)
+
+[node name="suitAndHelmet" parent="." instance=ExtResource("2_yxwcr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.66646624, 0, -3.3294191)

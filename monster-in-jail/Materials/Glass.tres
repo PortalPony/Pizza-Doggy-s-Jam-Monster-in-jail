@@ -2,7 +2,7 @@
 
 [resource]
 transparency = 3
-alpha_hash_scale = 0.83
+alpha_hash_scale = 1.0
 alpha_antialiasing_mode = 0
 metallic = 1.0
 metallic_specular = 0.9

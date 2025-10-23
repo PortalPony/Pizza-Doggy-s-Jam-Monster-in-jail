@@ -14,6 +14,8 @@
 #include "test.h"
 #include "MainMenuController/MainMenuController.cpp"
 #include "ButtonController/ButtonController.cpp"
+#include "MonsterController/Classes/MonsterShackle.cpp"
+#include "MonsterController/MonsterController.cpp"
 
 using namespace godot;
 
@@ -25,6 +27,8 @@ void initialize_test_module(ModuleInitializationLevel p_level) {
 	ClassDB::register_class<Test>();
 	ClassDB::register_class<MainMenuController>();
 	ClassDB::register_class<ButtonController>();
+	ClassDB::register_class<MonsterShackle>();
+	ClassDB::register_class<MonsterController>();
 }
 
 void uninitialize_test_module(ModuleInitializationLevel p_level) {

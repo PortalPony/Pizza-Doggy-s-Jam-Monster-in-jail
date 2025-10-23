@@ -1,24 +1,49 @@
-[gd_scene load_steps=8 format=3 uid="uid://bq1pyy6voftqq"]
+[gd_scene load_steps=11 format=3 uid="uid://bq1pyy6voftqq"]
 
-[ext_resource type="Script" uid="uid://dba8pdpkutokp" path="res://Scenes/main_menu.gd" id="1_tt5f1"]
 [ext_resource type="AudioStream" uid="uid://bdw86d4oqxipr" path="res://Music/horror sound demo 3.wav" id="2_853f1"]
 [ext_resource type="Material" uid="uid://c7g2y3gt3mfe3" path="res://Materials/Glass.tres" id="2_ghw46"]
 [ext_resource type="AudioStream" uid="uid://c72rmn5yil0hk" path="res://Sound/Bloop.mp3" id="3_8saeu"]
+[ext_resource type="PackedScene" uid="uid://8b78oouk84tx" path="res://Assets/suitAndHelmet.glb" id="4_ghw46"]
+
+[sub_resource type="GDScript" id="GDScript_8saeu"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_tt5f1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_853f1"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_ghw46"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_tt5f1"]
 font_size = 70
 
+[sub_resource type="Environment" id="Environment_8saeu"]
+ambient_light_energy = 0.42
+tonemap_mode = 3
+sdfgi_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.3781
+volumetric_fog_albedo = Color(0.04399869, 0, 0.0016098436, 1)
+adjustment_enabled = true
+
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_tt5f1")
+script = SubResource("GDScript_8saeu")
 
 [node name="Test" type="Test" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24129727, 0.30049652, 0.9847956)
+transform = Transform3D(0.98203784, 0, -0.18868408, 0, 1, 0, 0.18868408, 0, 0.98203784, -0.3394692, 0.30049652, 0.9785776)
 
 [node name="Hallway" type="Node" parent="."]
 
@@ -32,7 +57,7 @@ transform = Transform3D(0.0498569, 0, 0, 0, 1.8765422, 0, 0, 0, 1.0153273, -0.97
 mesh = SubResource("BoxMesh_853f1")
 
 [node name="HallwayWallRight" type="MeshInstance3D" parent="Hallway"]
-transform = Transform3D(0.002485711, 0, 0, 0, 1.3918124, 0, 0, 0, 1.0308897, 0.5829795, 0.1329543, 0.73202825)
+transform = Transform3D(0.002485711, 0, 0, 0, 1.6811174, 0, 0, 0, 1.0308897, 0.5829795, 0.1329543, 0.73202825)
 mesh = SubResource("BoxMesh_853f1")
 skeleton = NodePath("../HallwayWallLeft")
 
@@ -42,7 +67,7 @@ mesh = SubResource("BoxMesh_853f1")
 skeleton = NodePath("../HallwayWallLeft")
 
 [node name="HallwayWallFront_Bottom2" type="MeshInstance3D" parent="Hallway"]
-transform = Transform3D(-1.08653864e-10, 0, 2.0743527, 0, 0.3095886, 0, -0.0024857107, 0, -9.067284e-08, 0.02968219, 0.67381823, 0.31985086)
+transform = Transform3D(-1.08653864e-10, 0, 2.0743527, 0, 0.47025293, 0, -0.0024857107, 0, -9.067284e-08, 0.02968219, 0.7272953, 0.31985086)
 mesh = SubResource("BoxMesh_853f1")
 skeleton = NodePath("../HallwayWallLeft")
 
@@ -59,6 +84,7 @@ skeleton = NodePath("../HallwayWallLeft")
 [node name="HallwayGlass" type="MeshInstance3D" parent="Hallway"]
 transform = Transform3D(-1.08653864e-10, 0, 1.0724992, 0, 0.45168528, 0, -0.0024857107, 0, -4.6880427e-08, 0.0065231025, 0.32752582, 0.29670423)
 material_override = ExtResource("2_ghw46")
+transparency = 1.0
 mesh = SubResource("BoxMesh_853f1")
 skeleton = NodePath("../HallwayWallLeft")
 
@@ -70,6 +96,22 @@ transform = Transform3D(1, 0, 0, 0, -0.50439197, -0.86347485, 0, 0.86347485, -0.
 
 [node name="WindowLight3" type="SpotLight3D" parent="Hallway"]
 transform = Transform3D(1, 0, 0, 0, 0.99850255, 0.05470623, 0, -0.05470623, 0.99850255, -0.23428285, 0.44310164, 2.5737815)
+
+[node name="WindowSill_Bottom" type="MeshInstance3D" parent="Hallway"]
+transform = Transform3D(0.919406, 0, 0, 0, 0.06639682, 0, 0, 0, 0.03974521, -0.030843005, 0.14325261, 0.3273008)
+mesh = SubResource("BoxMesh_ghw46")
+
+[node name="WindowSill_Top" type="MeshInstance3D" parent="Hallway"]
+transform = Transform3D(0.919406, 0, 0, 0, 0.056187395, 0, 0, 0, 0.03974521, -0.030843005, 0.49687403, 0.3273008)
+mesh = SubResource("BoxMesh_ghw46")
+
+[node name="WindowSill_Left" type="MeshInstance3D" parent="Hallway"]
+transform = Transform3D(0.0586595, 0, 0, 0, 0.40325126, 0, 0, 0, 0.03974521, -0.45993003, 0.31297672, 0.3273008)
+mesh = SubResource("BoxMesh_ghw46")
+
+[node name="WindowSill_Right" type="MeshInstance3D" parent="Hallway"]
+transform = Transform3D(0.0586595, 0, 0, 0, 0.40325126, 0, 0, 0, 0.03974521, 0.39538595, 0.31297672, 0.3273008)
+mesh = SubResource("BoxMesh_ghw46")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -111,6 +153,13 @@ autoplay = true
 [node name="ButtonController" type="ButtonController" parent="."]
 onHoverSound = ExtResource("3_8saeu")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8saeu")
+
+[node name="suitAndHelmet" parent="." instance=ExtResource("4_ghw46")]
+transform = Transform3D(0.0011717014, 0, -0.28603294, 0, 0.24460283, 0, 0.20529935, 0, 0.0016324708, 0.51628506, 0, 0.47064704)
+
 [connection signal="mouse_entered" from="CanvasLayer/PlayButton" to="ButtonController" method="on_button_hover"]
 [connection signal="pressed" from="CanvasLayer/PlayButton" to="CanvasLayer/MainMenuController" method="on_button_pressed" binds= ["Play"]]
+[connection signal="mouse_entered" from="CanvasLayer/QuitButton" to="ButtonController" method="on_button_hover"]
 [connection signal="pressed" from="CanvasLayer/QuitButton" to="CanvasLayer/MainMenuController" method="on_button_pressed" binds= ["Quit"]]
